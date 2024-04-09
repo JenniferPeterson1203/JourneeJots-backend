@@ -4,10 +4,11 @@ const express = require("express");
 const cron = require("node-cron");
 const cookieParser = require("cookie-parser");
 
-const authController = require("./controllers/authController");
-
 // CONFIGURATION
 const app = express();
+
+const authController = require("./controllers/authController");
+const tripsController = require("./controllers/tripsController");
 
 // cron job to attempt to prevent render from sleeping
 cron.schedule("*/5 * * * *", () => {
@@ -17,17 +18,19 @@ cron.schedule("*/5 * * * *", () => {
   console.log(`Running a task every 5 minutes. Current time: ${currentTime}`);
 });
 
+app.use("/api/auth", authController);
+app.use("/api/trips", tripsController);
+
 // MIDDLEWARE change origin to your frontend netlify address for deployment
 app.use(
   cors({
     origin: "http://localhost:3000",
+    // change when this is deployed
     // origin: "https://main--jwt-auth-10-3.netlify.app/",
   })
 );
 app.use(express.json());
 app.use(cookieParser());
-
-app.use("/api/auth", authController);
 
 // ROUTES
 app.get("/", (_req, res) => {

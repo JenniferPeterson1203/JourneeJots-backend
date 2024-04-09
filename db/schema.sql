@@ -1,10 +1,10 @@
 -- db/schema.sql
-DROP DATABASE IF EXISTS jwt_auth;
+DROP DATABASE IF EXISTS journeejots;
 
-CREATE DATABASE jwt_auth;
+CREATE DATABASE journeejots;
 
 
-\c jwt_auth
+\c journeejots
 
 
 CREATE TABLE users (
@@ -17,4 +17,16 @@ CREATE TABLE users (
     country VARCHAR(56) NOT NULL
 );
 
+
+CREATE TABLE trips (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    destination VARCHAR(50),
+    first_time BOOLEAN DEFAULT TRUE,
+    start_date DATE,
+    end_date DATE,
+    budget INTEGER,
+    total_cost INTEGER,
+    climate varchar(5)
+);
 
