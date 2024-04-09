@@ -7,8 +7,7 @@ const auth = express.Router();
 
 // Login route
 auth.post("/login", async (req, res) => {
-  // const { username, password } = req.body;
-  console.log(req.body);
+  const { username, password } = req.body;
 
   try {
     const user = await findUserByUsername(username);
