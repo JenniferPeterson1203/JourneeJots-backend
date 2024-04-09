@@ -18,9 +18,6 @@ cron.schedule("*/5 * * * *", () => {
   console.log(`Running a task every 5 minutes. Current time: ${currentTime}`);
 });
 
-app.use("/api/auth", authController);
-app.use("/api/trips", tripsController);
-
 // MIDDLEWARE change origin to your frontend netlify address for deployment
 app.use(
   cors({
@@ -32,6 +29,9 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+app.use("/api/auth", authController);
+app.use("/api/trips", tripsController);
+// app.use("/api/entries", entriesController);
 // ROUTES
 app.get("/", (_req, res) => {
   res.send("Welcome to JWT Auth!");
