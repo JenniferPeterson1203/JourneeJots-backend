@@ -14,19 +14,31 @@ CREATE TABLE users (
     email VARCHAR(255) UNIQUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    country VARCHAR(56) NOT NULL
+    country TEXT NOT NULL
 );
 
 
 CREATE TABLE trips (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
+    user_id INTEGER NOT NULL,
     destination VARCHAR(50),
     first_time BOOLEAN DEFAULT TRUE,
     start_date DATE,
     end_date DATE,
     budget INTEGER,
     total_cost INTEGER,
-    climate varchar(5)
+    climate TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE entries (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) NOT NULL,
+    entry_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    trip_id INTEGER REFERENCES trips(id)  ON DELETE CASCADE,
+    location VARCHAR(56),
+    entry TEXT,
+    total_spent INTEGER
+);
+
+-- SELECT * FROM trips;
