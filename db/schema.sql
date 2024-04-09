@@ -35,10 +35,10 @@ CREATE TABLE entries (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) NOT NULL,
     entry_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    trip_id INTEGER REFERENCES trips(id)  ON DELETE CASCADE,
+    trip_id INTEGER REFERENCES trips(id) ON DELETE CASCADE,
     location VARCHAR(56),
     entry TEXT,
     total_spent INTEGER
 );
 
--- SELECT * FROM trips;
+

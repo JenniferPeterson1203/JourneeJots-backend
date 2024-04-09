@@ -9,6 +9,7 @@ const app = express();
 
 const authController = require("./controllers/authController");
 const tripsController = require("./controllers/tripsController");
+const entriesController = require("./controllers/entriesController");
 
 // cron job to attempt to prevent render from sleeping
 cron.schedule("*/5 * * * *", () => {
@@ -31,7 +32,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authController);
 app.use("/api/trips", tripsController);
-// app.use("/api/entries", entriesController);
+app.use("/api/entries", entriesController);
 // ROUTES
 app.get("/", (_req, res) => {
   res.send("Welcome to JWT Auth!");
