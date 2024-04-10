@@ -20,4 +20,4 @@ const getTripById = async (id) => {
   }
 };
 
-module.exports = { getAllTrips };
+module.exports = { getAllTrips, getTripById };
