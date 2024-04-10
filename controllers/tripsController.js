@@ -1,7 +1,12 @@
 const express = require("express");
 const trips = express.Router();
 
-const { getAllTrips, getTripById } = require("../queries/trips");
+const {
+  getAllTrips,
+  getTripById,
+  createTrip,
+  updateTripById,
+} = require("../queries/trips");
 
 trips.get("/", async (req, res) => {
   try {
@@ -23,6 +28,25 @@ trips.get("/:id", async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: "Server error" });
+  }
+});
+
+trips.post("/", async (req, res) => {
+  try {
+    const newTrip = await createTrip(req.body);
+    res.status(201).json(newTrip);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+trips.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updatedTrip = await updateTripById(id, req.body);
+    res.status(200).json(updatedTrip);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 });
 
