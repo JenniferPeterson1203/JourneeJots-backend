@@ -9,4 +9,13 @@ const getAllEntries = async () => {
   }
 };
 
-module.exports = { getAllEntries };
+const getEntryById = async (id) => {
+  try {
+    const oneEntry = await db.one("SELECT * FROM entries WHERE id=$1", id);
+    return oneEntry;
+  } catch (error) {
+    return error;
+  }
+};
+
+module.exports = { getAllEntries, getEntryById };
