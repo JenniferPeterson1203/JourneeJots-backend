@@ -6,6 +6,7 @@ const {
   getTripById,
   createTrip,
   updateTripById,
+  deleteTripById,
 } = require("../queries/trips");
 
 trips.get("/", async (req, res) => {
@@ -47,6 +48,15 @@ trips.put("/:id", async (req, res) => {
     res.status(200).json(updatedTrip);
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+});
+trips.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedTrip = await deleteTripById(id);
+    res.status(200).json(deletedTrip);
+  } catch (error) {
+    res.status(404).json({ error: "Trip not found with this ID" });
   }
 });
 

@@ -52,18 +52,6 @@ const createTrip = async (trip) => {
   }
 };
 
-const deleteTripById = async (id) => {
-  try {
-    const deletedTrip = await db.one(
-      "DELETE FROM trips WHERE id = $1 RETURNING *",
-      id
-    );
-    return deletedTrip;
-  } catch (error) {
-    return error;
-  }
-};
-
 const updateTripById = async (id, trip) => {
   const {
     user_id,
@@ -96,6 +84,17 @@ const updateTripById = async (id, trip) => {
     return error;
   }
 };
+const deleteTripById = async (id) => {
+  try {
+    const deletedTrip = await db.one(
+      "DELETE FROM trips WHERE id = $1 RETURNING *",
+      id
+    );
+    return deletedTrip;
+  } catch (error) {
+    return error;
+  }
+};
 
 module.exports = {
   getAllTrips,
@@ -103,4 +102,5 @@ module.exports = {
   createTrip,
   deleteTripById,
   updateTripById,
+  deleteTripById,
 };
