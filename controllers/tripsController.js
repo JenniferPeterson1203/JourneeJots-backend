@@ -9,6 +9,8 @@ const {
   deleteTripById,
 } = require("../queries/trips");
 
+const { validateDestination } = require("../validations/checkTrips");
+
 trips.get("/", async (req, res) => {
   try {
     const allTrips = await getAllTrips();
@@ -23,6 +25,7 @@ trips.get("/:id", async (req, res) => {
   try {
     const trips = await getTripById(id);
     if (trips) {
+      console.log(trips);
       res.status(200).json({ ...trips });
     } else {
       res.status(404).json({ error: "Trip with this ID was not found" });
@@ -32,9 +35,11 @@ trips.get("/:id", async (req, res) => {
   }
 });
 
-trips.post("/", async (req, res) => {
+trips.post("/", validateDestination, async (req, res) => {
+  console.log("body", req.body);
   try {
     const newTrip = await createTrip(req.body);
+    console.log("new trip:", newTrip);
     res.status(201).json(newTrip);
   } catch (error) {
     res.status(400).json({ error: error.message });

@@ -21,6 +21,7 @@ const getTripById = async (id) => {
 };
 
 const createTrip = async (trip) => {
+  console.log("trip", trip);
   const {
     user_id,
     destination,
@@ -46,6 +47,7 @@ const createTrip = async (trip) => {
         climate,
       ]
     );
+    console.log("Q new trip", newTrip);
     return newTrip;
   } catch (error) {
     return error;

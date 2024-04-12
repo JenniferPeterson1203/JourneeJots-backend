@@ -27,6 +27,7 @@ app.use(
     // origin: "https://main--jwt-auth-10-3.netlify.app/",
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
