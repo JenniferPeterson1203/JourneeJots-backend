@@ -61,10 +61,25 @@ const deleteEntryById = async (id) => {
     return error;
   }
 };
+
+const updateEntry = async (entries) => {
+  const { user_id, entry_date, trip_id, entry, total_spent, id } = entries;
+  try {
+    const updatedEntry = await db.one(
+      "UPDATE entries SET user_id = $1, entry_date=$2, trip_id=$3, entry=$4, total_spent = $5 WHERE id=$6 RETURNING *",
+      [user_id, entry_date, trip_id, entry, total_spent, id]
+    );
+    return updatedEntry;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   getAllEntries,
   getEntriesByTripId,
   createEntry,
   deleteEntryById,
   getOneEntryById,
+  updateEntry,
 };

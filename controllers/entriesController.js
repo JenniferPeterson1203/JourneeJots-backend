@@ -7,6 +7,7 @@ const {
   getOneEntryById,
   createEntry,
   deleteEntryById,
+  updateEntry,
 } = require("../queries/entries");
 
 // route to get ALL journal entries
@@ -69,6 +70,17 @@ entries.delete("/:id", async (req, res) => {
     res.status(200).json(deletedEntry);
   } catch (error) {
     res.status(404).json({ error: "Entry not found with this id" });
+  }
+});
+
+// route to edit a journal entry
+entries.put("/single/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedEntry = await updateEntry({ id, ...req.body });
+  if (updatedEntry.id) {
+    res.status(200).json(updatedEntry);
+  } else {
+    res.status(400).json("Entry not found");
   }
 });
 
