@@ -6,16 +6,19 @@ VALUES
 ('demoUser', '$2b$10$LFcFjUKNCOwsMR9juWZqvOiCFYV5l0BvMCRHvn0.Ovg8X5VPoRaA2', 'demouser@example.com', NOW(), NOW(), 'United States');
 
 
-
 INSERT INTO trips(user_id,destination,first_time,start_date,end_date,budget,total_cost,climate)VALUES(1, 'Jamaica',true,'2013-03-23', '2013-03-28', 1500, 800, 'hot'),
 (1, 'Mexico',true,'2014-04-23', '2014-04-28', 1500, 300, 'hot'),
 (1, 'Dominican Republic',true,'2015-05-23', '2015-05-28', 2000, 500, 'hot'),
 (1, 'Morocco', false, '2018-07-15', '2018-07-25', 2000, 1800, 'warm'),
 (1, 'El Salvador', true, '2019-05-10', '2019-05-20', 2500, 2200, 'warm'),
-(1, 'Guatemala', false, '2020-03-03', '2020-03-15', 3000, 2800, 'tropical');
+(1, 'Guatemala', false, '2020-03-03', '2020-03-15', 3000, 2800, 'tropical'),
+(1, 'Iceland', true, '2024-12-10', '2024-12-17', 3000, 2500, 'cold');
+
 
 INSERT INTO entries (user_id,entry_date,trip_id,entry,total_spent)
 VALUES
+(1, NOW(), 7, 'Embarked on an adventure to explore the breathtaking glaciers of Iceland, marveling at their stunning beauty and immense size. Went snowmobiling across vast icy landscapes, feeling the rush of adrenaline as we raced through the pristine snow. Enjoyed cozy evenings under the Northern Lights, sipping hot cocoa and sharing stories with fellow travelers.', 150),
+ (1, NOW(), (SELECT MAX(id) FROM trips), 'Explored the otherworldly landscapes of the Golden Circle, visiting iconic sites such as the majestic Gullfoss waterfall and the geothermal area of Geysir. Hiked through rugged terrain, feeling the crunch of snow beneath our boots as we admired the stunning vistas of snow-capped mountains and steaming hot springs. Ended the day with a relaxing soak in a natural hot spring, surrounded by snow-covered scenery.', 150),
 (1, NOW(), 1, 'Enjoyed the beautiful beaches of Montego Bay, with its pristine white sands and crystal-clear waters, while soaking up the warm Caribbean sun. Indulged in the vibrant local cuisine, savoring the flavors of jerk chicken, fresh seafood, and tropical fruits. Explored the lively streets lined with colorful shops and reggae music echoing in the air.', 50),
 (1, NOW(), 1, 'Embarked on an exhilarating adventure in Ocho Rios by soaring through the lush jungle canopy on a thrilling zip-lining excursion. Later, journeyed to the iconic Dunn\"s River Falls, where cascading waterfalls provided the perfect backdrop for a refreshing climb amidst the tropical scenery. Ended the day with a delicious meal of Jamaican specialties.', 30),
 (1, NOW(), 1, 'Explored the vibrant nightlife of Negril, dancing to the rhythm of reggae music and sampling tropical cocktails at beachfront bars. Joined a lively beach party, watching fire dancers perform under the starry Caribbean sky. Ended the night with a bonfire gathering, sharing stories and laughter with fellow travelers.', 80),
