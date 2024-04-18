@@ -43,7 +43,9 @@ const createEntry = async (entries) => {
       "INSERT INTO entries (user_id,entry_date,trip_id,entry,total_spent) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [user_id, entry_date, trip_id, entry, total_spent]
     );
-    console.log("Q new entry:", newEntry);
+    // for FUTURE FEATURE
+    // add a second query to add the amount spent from each journal entry to the total cost within the Trips Index
+    // can either add it up or reduce it from the total budget and display if they're in the red or in the green
     return newEntry;
   } catch (error) {
     return error;
