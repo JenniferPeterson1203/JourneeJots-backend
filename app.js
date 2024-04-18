@@ -22,9 +22,9 @@ const entriesController = require("./controllers/entriesController");
 // MIDDLEWARE change origin to your frontend netlify address for deployment
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
     // change when this is deployed
-    // origin: "https://main--jwt-auth-10-3.netlify.app/",
+    origin: "https://main--jwt-auth-10-3.netlify.app",
   })
 );
 
