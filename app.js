@@ -24,11 +24,11 @@ app.use(
   cors({
     // origin: "http://localhost:3000",
     // change when this is deployed
-    origin: "https://main--jwt-auth-10-3.netlify.app",
+    origin: "https://journeejots.netlify.app",
   })
 );
 
-app.use(express.json());
+https: app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authController);
