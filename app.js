@@ -24,7 +24,7 @@ app.use(
   cors({
     // origin: "http://localhost:3000",
     // change when this is deployed
-    origin: "https://journeejots.netlify.app",
+    origin: ["https://journeejots.netlify.app", "http://localhost:3000"],
   })
 );
 
@@ -36,7 +36,7 @@ app.use("/api/trips", tripsController);
 app.use("/api/entries", entriesController);
 // ROUTES
 app.get("/", (_req, res) => {
-  res.send("Welcome to JWT Auth!");
+  res.send("Welcome to the server of JourneeJots!");
 });
 
 // 404 PAGE
